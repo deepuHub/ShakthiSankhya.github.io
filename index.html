@@ -159,6 +159,31 @@
       }
       .features-list { flex-direction:column; gap:6px;}
     }
+    .back-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #187684;
+    color: white;
+    padding: 12px 16px;
+    border-radius: 50%;
+    font-size: 18px;
+    font-weight: bold;
+    box-shadow: 0 4px 16px rgba(24, 118, 132, 0.3);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 100;
+}
+.back-to-top:hover {
+    background: #145b62;
+    transform: translateY(-2px);
+}
+.back-to-top.show {
+    opacity: 1;
+    visibility: visible;
+}
+
   </style>
 </head>
 <body>
@@ -248,5 +273,21 @@
       Shakthi Sankhya is a free app. This copyright policy helps maintain respectful sharing and inspires original spiritual work.
     </footer>
   </div>
+<!-- Add before closing </body> -->
+<a href="#" class="back-to-top" id="backToTop">↑</a>
+<script>
+window.addEventListener('scroll', function() {
+    var backToTop = document.getElementById('backToTop');
+    if (window.pageYOffset > 300) {
+        backToTop.classList.add('show');
+    } else {
+        backToTop.classList.remove('show');
+    }
+});
+document.getElementById('backToTop').addEventListener('click', function(e) {
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+</script>
 </body>
 </html>
