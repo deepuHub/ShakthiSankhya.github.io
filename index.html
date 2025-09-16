@@ -12,7 +12,6 @@
       font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
       color: #30415d;
       background: linear-gradient(120deg, #68c2be 0%, #a0d8ef 60%, #e4ffe4 100%);
-      /* Gentle bluish-green gradient: adjust stops for more/less blue or green */
     }
     .header {
       background: rgba(255,255,255,0.8);
@@ -26,7 +25,6 @@
       font-weight: 600;
       letter-spacing: 1px;
       color: #187684;
-      /* Deep ocean blue-green for title */
     }
     nav {
       display: flex;
@@ -55,6 +53,63 @@
       border-radius: 18px;
       box-shadow: 0 2px 24px 0 rgba(48,65,93,0.06);
     }
+    .marketing-block {
+      background: #e6f4f1;
+      border-radius: 14px;
+      padding: 24px 18px;
+      margin-bottom: 30px;
+      box-shadow: 0 2px 16px #e2eaea;
+      text-align: center;
+    }
+    .marketing-block h2 {
+      margin-top: 0;
+      color: #20797d;
+    }
+    .appstore-btn {
+      display:inline-block;
+      background:#187684;
+      color:#fff;
+      font-weight:600;
+      font-size:1.15em;
+      padding:10px 28px;
+      border-radius:8px;
+      margin: 18px 0 10px 0;
+      text-decoration:none;
+      letter-spacing:1px;
+      transition:background 0.15s;
+    }
+    .appstore-btn:hover {
+      background: #145b62;
+    }
+    .features-list {
+      margin-top:14px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      justify-content:center;
+      font-size:1em;
+    }
+    .feature-tag {
+      background:#b1ebe1;
+      color:#287d7f;
+      padding:6px 18px;
+      margin:0 4px 6px 0;
+      border-radius:16px;
+      display:inline-block;
+      font-weight:500;
+      letter-spacing:0.5px;
+    }
+    .screenshots-row {
+      margin-top:20px;
+      text-align:center;
+    }
+    .screenshots-row img {
+      max-width:130px;
+      margin:0 8px 0 8px;
+      border-radius:10px;
+      box-shadow:0 1px 10px #e0e7ef;
+      vertical-align:middle;
+    }
     .faq-list .faq {
       margin-bottom: 28px;
     }
@@ -77,6 +132,11 @@
         gap: 12px;
         font-size: 0.95em;
       }
+      .screenshots-row img {
+        max-width: 100px;
+        margin:0 4px 8px 0;
+      }
+      .features-list { flex-direction:column; gap:6px;}
     }
   </style>
 </head>
@@ -89,8 +149,31 @@
       <a href="#support">Support</a>
     </nav>
   </div>
-
   <div class="content" id="home">
+
+    <!-- MARKETING SECTION START -->
+    <div class="marketing-block">
+      <h2>Download Shakthi Sankhya – Spiritual Practice, Evolved</h2>
+      <a class="appstore-btn" href="https://apps.apple.com/app/idYOUR_APP_ID" target="_blank">
+        Get it FREE on iOS
+      </a>
+      <div class="features-list">
+        <span class="feature-tag">Japam & Mantra Counter</span>
+        <span class="feature-tag">Guru-Led Gurukul Community</span>
+        <span class="feature-tag">Session History & Energy Tracker</span>
+        <span class="feature-tag">Always Free & Ad-Free</span>
+        <span class="feature-tag">Mobile & Tablet Ready</span>
+        <span class="feature-tag">Fully Private</span>
+      </div>
+      <div class="screenshots-row">
+        <!-- Replace these src attributes with your real screenshot images -->
+        <img src="screenshot1.png" alt="Japam Counter">
+        <img src="screenshot2.png" alt="Gurukul Dashboard">
+        <img src="screenshot3.png" alt="Session Log">
+      </div>
+    </div>
+    <!-- MARKETING SECTION END -->
+
     <h2>Guru Led Energy Tracking</h2>
     <p>
       Elevate your spiritual journey with Shakthi Sankhya—a serene, ad-free space for Japam and mantra tracking. 
@@ -102,7 +185,6 @@
       <b>Always free, always ad-free.</b> Your dhyanam and focus matter—Shakthi Sankhya respects your practice and your peace.
     </p>
   </div>
-
   <div class="content" id="faqs">
     <h2>Frequently Asked Questions</h2>
     <div class="faq-list">
@@ -119,7 +201,6 @@
       <div class="faq"><h3>What’s the support contact email?</h3><p>For any help or feedback, reach out to <a href="mailto:shakthisankhya@gmail.com">shakthisankhya@gmail.com</a></p></div>
     </div>
   </div>
-
   <div class="content" id="support">
     <h2>Support</h2>
     <p>
