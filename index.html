@@ -184,13 +184,25 @@
     opacity: 1;
     visibility: visible;
 }
-
+@media (max-width: 600px) {
+  .main-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .main-menu a {
+    width: 100%;
+    padding: 12px 0;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+  }
+}
   </style>
 </head>
 <body>
   <div class="header">
     <h1>Shakthi Sankhya</h1>
-    <nav>
+    <nav class="main-menu">
       <a href="#home" class="active">Home</a>
       <a href="#marketing">Marketing</a>
       <a href="#faqs">FAQs</a>
@@ -267,10 +279,15 @@
   </div>
   <div class="content" id="support">
     <h2>Support</h2>
+    <div class="permission">
     <p>
-      Download the Quick Reference guide by clicking on this link <a href="Shakthi Sankhya _ Quick Reference Guide.pdf" target="_blank">Download QRG PDF</a><br>For help, feature requests, or feedback, email <a href="mailto:support@shakthisankhya.org">support@shakthisankhya.org</a>.
-      <br />We honor your journey and are here to support your spiritual progress.
+      <a href="Shakthi Sankhya _ Quick Reference Guide.pdf" target="_blank">Download Easy-to-Use guide</a>
+      <br><br>
     </p>
+    </div>
+    For help, feature requests, or feedback, email <a href="mailto:support@shakthisankhya.org">support@shakthisankhya.org</a>
+      <br>
+      We honor your journey and are here to support your spiritual progress.
   </div>
   <div class="container" id="copyrights">
     <h1>Copyright Notice</h1>
