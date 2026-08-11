@@ -3,329 +3,284 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Shakthi Sankhya — a free, ad-free Japam and mantra counter with Guru-led Gurukul community tracking. Sacred practice, modern clarity." />
   <link rel="icon" type="image/png" href="appicon8.png">
-  <title>Shakthi Sankhya</title>
-  <style>
-    body {
-      min-height: 100vh;
-      margin: 0;
-      padding: 0;
-      font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
-      color: #30415d;
-      background: linear-gradient(120deg, #68c2be 0%, #a0d8ef 60%, #e4ffe4 100%);
-    }
-    .header {
-      background: rgba(255,255,255,0.8);
-      padding: 24px 0 12px 0;
-      text-align: center;
-      border-bottom: 1px solid #e5e9ea;
-    }
-    .header h1 {
-      margin: 0;
-      font-size: 2.4em;
-      font-weight: 600;
-      letter-spacing: 1px;
-      color: #187684;
-    }
-    nav {
-      display: flex;
-      justify-content: center;
-      gap: 32px;
-      margin: 18px 0;
-    }
-    nav a {
-      text-decoration: none;
-      font-weight: 500;
-      color: #2d767f;
-      padding: 8px 16px;
-      border-radius: 18px;
-      transition: background 0.2s;
-      background: rgba(255,255,255,0.5);
-    }
-    nav a:hover, nav a.active {
-      background: #e8ecf1;
-      color: #187684;
-    }
-    .container {
-      max-width: 620px;
-      margin: 3em auto;
-      background: #fff;
-      padding: 42px 28px 32px 28px;
-      box-shadow: 0 4px 24px rgba(48,65,93,0.06);
-      border-radius: 16px;
-      text-align: center;
-    }
-    .permission {
-      margin: 28px 0 24px 0;
-      background: #e7fbf7;
-      color: #187684;
-      border-radius: 12px;
-      padding: 16px;
-    }
-    .contact {
-      margin-top: 24px;
-      color: #187684;
-      font-size: 1em;
-    }
-    .content {
-      max-width: 680px;
-      margin: 44px auto;
-      padding: 32px;
-      background: rgba(255,255,255,0.8);
-      border-radius: 18px;
-      box-shadow: 0 2px 24px 0 rgba(48,65,93,0.06);
-    }
-    .marketing-block {
-      background: #e6f4f1;
-      border-radius: 14px;
-      padding: 24px 18px;
-      margin-bottom: 30px;
-      box-shadow: 0 2px 16px #e2eaea;
-      text-align: center;
-    }
-    .marketing-block h2 {
-      margin-top: 0;
-      color: #20797d;
-    }
-    .appstore-btn {
-      display:inline-block;
-      background:#187684;
-      color:#fff;
-      font-weight:600;
-      font-size:1.15em;
-      padding:10px 28px;
-      border-radius:8px;
-      margin: 18px 0 10px 0;
-      text-decoration:none;
-      letter-spacing:1px;
-      transition:background 0.15s;
-    }
-    .appstore-btn:hover {
-      background: #145b62;
-    }
-    .features-list {
-      margin-top:14px;
-      display:flex;
-      flex-wrap:wrap;
-      gap:12px;
-      justify-content:center;
-      font-size:1em;
-    }
-    .feature-tag {
-      background:#b1ebe1;
-      color:#287d7f;
-      padding:6px 18px;
-      margin:0 4px 6px 0;
-      border-radius:16px;
-      display:inline-block;
-      font-weight:500;
-      letter-spacing:0.5px;
-    }
-    .screenshots-row {
-      margin-top:20px;
-      text-align:center;
-    }
-    .screenshots-row img {
-      max-width:130px;
-      margin:0 8px 0 8px;
-      border-radius:10px;
-      box-shadow:0 1px 10px #e0e7ef;
-      vertical-align:middle;
-    }
-    .faq-list .faq {
-      margin-bottom: 28px;
-    }
-    .faq-list h3 {
-      margin-bottom: 6px;
-      font-weight: 500;
-      color: #205071;
-    }
-    .faq-list p {
-      margin: 0 0 10px 0;
-      color: #375160;
-      font-size: 1em;
-    }
-    @media (max-width: 600px) {
-      .content {
-        padding: 18px;
-        margin: 24px 6px;
-      }
-      nav {
-        gap: 12px;
-        font-size: 0.95em;
-      }
-      .screenshots-row img {
-        max-width: 100px;
-        margin:0 4px 8px 0;
-      }
-      .features-list { flex-direction:column; gap:6px;}
-    }
-    .back-to-top {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: #187684;
-    color: white;
-    padding: 12px 16px;
-    border-radius: 50%;
-    font-size: 18px;
-    font-weight: bold;
-    box-shadow: 0 4px 16px rgba(24, 118, 132, 0.3);
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s ease;
-    z-index: 100;
-}
-.back-to-top:hover {
-    background: #145b62;
-    transform: translateY(-2px);
-}
-.back-to-top.show {
-    opacity: 1;
-    visibility: visible;
-}
-@media (max-width: 600px) {
-  .main-menu {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-  .main-menu a {
-    width: 100%;
-    padding: 12px 0;
-    text-align: left;
-    border-bottom: 1px solid #eee;
-  }
-}
-  </style>
+  <title>Shakthi Sankhya — Guru-Led Energy Tracking</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-  <div class="header">
-    <h1>Shakthi Sankhya</h1>
-    <nav class="main-menu">
-      <a href="#home" class="active">Home</a>
-      <a href="#marketing">Marketing</a>
-      <a href="#faqs">FAQs</a>
-      <a href="#support">Support</a>
-      <a href="#copyrights">Copyrights</a>
-      <a href="https://deepuhub.github.io/ShakthiSankhya.github.io/privacypolicy" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
-      <a href="https://deepuhub.github.io/ShakthiSankhya.github.io/deleteyouraccount" target="_blank" rel="noopener noreferrer">Delete Your Account</a>
-    </nav>
-  </div>
-  <div class="content" id="home">
+  <a class="skip-link" href="#main">Skip to content</a>
 
-    <!-- MARKETING SECTION START -->
-    <div class="marketing-block" id="marketing">
-      <h2>Download ShakthiSankhya – Guru Led Energy Tracking</h2>
-      <!--<a class="appstore-btn" href="https://apps.apple.com/us/app/shakthisankhya/id6752577640" target="_blank">
-        Get it FREE on iOS
-      </a>-->
-      <a href="https://apps.apple.com/us/app/shakthisankhya/id6752577640" target="_blank" style="display:inline-block;width:135px;margin:8px;">
-      <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" 
-      alt="Download on the App Store" style="width:100%; height:auto;"/>
+  <header class="site-header">
+    <div class="nav-wrap">
+      <a class="brand" href="#home">
+        <svg class="brand-mark" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <defs>
+            <linearGradient id="lotusGrad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#e0a83a"/>
+              <stop offset="1" stop-color="#187684"/>
+            </linearGradient>
+          </defs>
+          <g fill="url(#lotusGrad)">
+            <path d="M12 3C9.5 6.2 9.5 9.4 12 12C14.5 9.4 14.5 6.2 12 3Z"/>
+            <path d="M12 3C9.5 6.2 9.5 9.4 12 12C14.5 9.4 14.5 6.2 12 3Z" transform="rotate(72 12 12)"/>
+            <path d="M12 3C9.5 6.2 9.5 9.4 12 12C14.5 9.4 14.5 6.2 12 3Z" transform="rotate(144 12 12)"/>
+            <path d="M12 3C9.5 6.2 9.5 9.4 12 12C14.5 9.4 14.5 6.2 12 3Z" transform="rotate(216 12 12)"/>
+            <path d="M12 3C9.5 6.2 9.5 9.4 12 12C14.5 9.4 14.5 6.2 12 3Z" transform="rotate(288 12 12)"/>
+            <circle cx="12" cy="12" r="1.6" fill="#fff"/>
+          </g>
+        </svg>
+        <span>Shakthi Sankhya<span class="brand-sub">Guru-Led Energy Tracking</span></span>
       </a>
-      
-      <a href="https://play.google.com/store/apps/details?id=com.ragJQwFcleAK.natively" target="_blank" style=" display:inline-block;width:150px;margin:8px;">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" 
-      alt="Get it on Google Play" style=" width:100%; height:auto;"/>
-      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false"><span></span></button>
+      <ul class="main-menu" id="mainMenu">
+        <li><a href="#home" class="active">Home</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#faqs">FAQs</a></li>
+        <li><a href="#support">Support</a></li>
+        <li><a href="#copyrights">Copyrights</a></li>
+        <li><a href="privacypolicy.html">Privacy Policy</a></li>
+        <li><a href="deleteyouraccount.html">Delete Account</a></li>
+      </ul>
+    </div>
+  </header>
 
-      <!--<a href="https://drive.google.com/file/d/1KLblvq_27YRnYMdNjqD_dKbw61UDFCBu/view?usp=sharing" target="_blank" style="display:inline-block;width:120px;margin:8px;text-decoration:none;background:#3DDC84;color:#fff;font-weight:bold;border-radius:5px;padding:6px 0; font-size:16px; height:40px; line-height:24px; text-align:center;">
-      Download Android APK
-      </a>-->
+  <main id="main">
+    <section class="hero" id="home">
+      <svg class="hero-leaf left" viewBox="0 0 200 260" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M40 250C40 250 30 180 60 140C90 100 70 40 100 10" stroke="#ffffff" stroke-width="3" stroke-linecap="round" opacity="0.6"/>
+        <g fill="#ffffff">
+          <ellipse cx="55" cy="230" rx="18" ry="9" transform="rotate(-30 55 230)"/>
+          <ellipse cx="45" cy="195" rx="16" ry="8" transform="rotate(20 45 195)"/>
+          <ellipse cx="68" cy="165" rx="15" ry="7.5" transform="rotate(-25 68 165)"/>
+          <ellipse cx="58" cy="130" rx="14" ry="7" transform="rotate(25 58 130)"/>
+          <ellipse cx="78" cy="95" rx="13" ry="6.5" transform="rotate(-20 78 95)"/>
+          <ellipse cx="85" cy="55" rx="12" ry="6" transform="rotate(15 85 55)"/>
+        </g>
+      </svg>
+      <svg class="hero-leaf right" viewBox="0 0 200 260" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M40 250C40 250 30 180 60 140C90 100 70 40 100 10" stroke="#ffffff" stroke-width="3" stroke-linecap="round" opacity="0.6"/>
+        <g fill="#ffffff">
+          <ellipse cx="55" cy="230" rx="18" ry="9" transform="rotate(-30 55 230)"/>
+          <ellipse cx="45" cy="195" rx="16" ry="8" transform="rotate(20 45 195)"/>
+          <ellipse cx="68" cy="165" rx="15" ry="7.5" transform="rotate(-25 68 165)"/>
+          <ellipse cx="58" cy="130" rx="14" ry="7" transform="rotate(25 58 130)"/>
+          <ellipse cx="78" cy="95" rx="13" ry="6.5" transform="rotate(-20 78 95)"/>
+          <ellipse cx="85" cy="55" rx="12" ry="6" transform="rotate(15 85 55)"/>
+        </g>
+      </svg>
 
-      <a href="https://mantra-zen-tracker.lovable.app" target="_blank" style="display:inline-block;width:120px;margin:8px;text-decoration:none;background:#3753e5;color:#fff;font-weight:bold;border-radius:5px;padding:6px 0; font-size:16px; height:40px; line-height:24px; text-align:center;">
-  Access on the Web
-</a>
+      <div class="hero-inner">
+        <div class="hero-om" aria-hidden="true">ॐ</div>
+        <p class="eyebrow">Guru-Led Digital Sanctuary</p>
+        <h1><span class="sanskrit">शक्ति संख्या</span>Shakthi Sankhya</h1>
+        <p class="hero-tagline">Guru-Led Energy Tracking</p>
+        <p class="hero-desc">
+          A serene, ad-free space for Japam and mantra tracking — blending Gurukul wisdom with instant counters,
+          session history, and secure personal logs. Practice alone, or guided by your Guru.
+        </p>
 
-      <div class="features-list">
-        <span class="feature-tag">Japam & Mantra Counter</span>
-        <span class="feature-tag">Guru-Led Gurukul Community</span>
-        <span class="feature-tag">Session History & Energy Tracker</span>
-        <span class="feature-tag">Always Free & Ad-Free</span>
-        <span class="feature-tag">Mobile & Tablet Ready</span>
-        <span class="feature-tag">Fully Private</span>
+        <div class="store-row">
+          <a href="https://apps.apple.com/us/app/shakthisankhya/id6752577640" target="_blank" rel="noopener noreferrer">
+            <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on the App Store">
+          </a>
+          <a href="https://play.google.com/store/apps/details?id=com.ragJQwFcleAK.natively" target="_blank" rel="noopener noreferrer">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Get it on Google Play">
+          </a>
+          <a class="btn-web" href="https://mantra-zen-tracker.lovable.app" target="_blank" rel="noopener noreferrer">
+            🌐 Access on the Web
+          </a>
+        </div>
+
+        <div class="trust-row">
+          <span class="trust-chip">✨ Always Free</span>
+          <span class="trust-chip">🚫 Ad-Free Forever</span>
+          <span class="trust-chip">🔒 Fully Private</span>
+          <span class="trust-chip">📱 Mobile &amp; Tablet Ready</span>
+        </div>
       </div>
-      <div class="screenshots-row">
-        <!-- Replace these src attributes with your real screenshot images -->
-        <img src="screenshot1.png" alt="Japam Counter">
-        <img src="screenshot2.png" alt="Gurukul Dashboard">
-        <img src="screenshot3.png" alt="Session Log">
-      </div>
-    </div>
-    <!-- MARKETING SECTION END -->
+    </section>
 
-    <h2>Guru Led Energy Tracking</h2>
-    <p>
-      Elevate your spiritual journey with Shakthi Sankhya—a serene, ad-free space for Japam and mantra tracking. 
-      Blend ancient Gurukul wisdom with modern features: instant counters, session history, secure personal logs, and community feedback.
-      Whether practicing independently or guided by a Guru, enjoy clarity, privacy, and inspiration on every step. 
-      Join a calm digital sanctuary where every mantra and mindful habit shapes your energy.
-    </p>
-    <p>
-      <b>Always free, always ad-free.</b> Your dhyanam and focus matter—Shakthi Sankhya respects your practice and your peace.
-    </p>
-  </div>
-  <div class="content" id="faqs">
-    <h2>Frequently Asked Questions</h2>
-    <div class="faq-list">
-      <div class="faq"><h3>What is Shakthi Sankhya?</h3><p>Shakthi Sankhya is a free, ad-free app designed for mantra counting, Japam tracking, spiritual progress visualization, and Gurukul-based community practice.</p></div>
-      <div class="faq"><h3>Who can use Shakthi Sankhya?</h3><p>Both independent practitioners and Gurus or spiritual mentors can use the app, with dedicated features and dashboards for each role.</p></div>
-      <div class="faq"><h3>Is the app really free and ad-free?</h3><p>Yes. Shakthi Sankhya is always free and contains no advertisements, respecting the focus and serenity of your spiritual path.</p></div>
-      <div class="faq"><h3>How does the Japam counter work?</h3><p>The Instant Japam Counter lets you tap for each repetition, set target counts, and instantly see your progress—perfect for focused practice.</p></div>
-      <div class="faq"><h3>What’s included in session history?</h3><p>Session history provides complete logs of personal or group practices, including dates, repetition counts, and milestone achievements for meaningful reflection.</p></div>
-      <div class="faq"><h3>How is my data kept secure?</h3><p>All personal feedback and progress are encrypted and only accessible to authorized Gurus or admins, ensuring privacy for every user.</p></div>
-      <div class="faq"><h3>How can I give feedback or request new features?</h3><p>Practitioners can suggest features, report bugs, or communicate with Gurus and the app community directly through in-app feedback forms.</p></div>
-      <div class="faq"><h3>Can Gurus organize and manage Gurukuls?</h3><p>Yes. Gurus can create Gurukuls, assign goals, track the collective progress of disciples, and provide guidance and motivation using advanced oversight tools.</p></div>
-      <div class="faq"><h3>Does the app work on mobile and tablet?</h3><p>Shakthi Sankhya is fully optimized for mobile and tablet devices with a responsive, accessible interface.</p></div>
-      <div class="faq"><h3>What makes Shakthi Sankhya unique?</h3><p>It is specifically built for the Gurukul spiritual model, yet supports individual practice, with always-free access, next-level privacy, and zero distractions.</p></div>
-      <div class="faq"><h3>What’s the support contact email?</h3><p>For any help or feedback, reach out to <a href="mailto:support@shakthisankhya.org">support@shakthisankhya.org</a></p></div>
+    <div class="lede-card">
+      <p class="eyebrow">The Practice</p>
+      <h2>Where Gurukul Wisdom Meets Modern Tracking</h2>
+      <p>
+        Elevate your spiritual journey with Shakthi Sankhya — a calm, ad-free sanctuary for Japam and mantra tracking.
+        Blend ancient Gurukul wisdom with modern features: instant counters, session history, secure personal logs,
+        and community feedback. Whether practicing independently or guided by a Guru, enjoy clarity, privacy, and
+        inspiration on every step.
+      </p>
+      <p><strong>Always free, always ad-free.</strong> Your dhyanam and focus matter — Shakthi Sankhya respects your practice and your peace.</p>
     </div>
-  </div>
-  <div class="content" id="support">
-    <h2>Support</h2>
-    <div class="permission">
-    <p>
-      <a href="Shakthi Sankhya _ Quick Reference Guide.pdf" target="_blank">Download Easy-to-Use guide</a>
-      <br><br>
-    </p>
-    </div>
-    For help, feature requests, or feedback, email <a href="mailto:support@shakthisankhya.org">support@shakthisankhya.org</a>
-      <br>
-      We honor your journey and are here to support your spiritual progress.
-  </div>
-  <div class="container" id="copyrights">
-    <h1>Copyright Notice</h1>
-    <p>
-      © 2025 Sri Gnana Peetam. All content, branding, designs, code, images, and text within the Shakthi Sankhya app and web pages are the intellectual property of Sri Gnana Peetam.
-    </p>
-    <div class="permission">
-      <b>Permission Required:</b>  
-      You may not copy, reproduce, modify, or distribute any part of the app or its content in any form without explicit written permission. For collaborations, publication, or reuse, please request permission first.
-    </div>
-    <div class="contact">
-      To request usage rights or report copyright issues, email  
-      <a href="mailto:support@shakthisankhya.org">support@shakthisankhya.org</a>
-    </div>
-    <footer>
-      Shakthi Sankhya is a free app. This copyright policy helps maintain respectful sharing and inspires original spiritual work.
-    </footer>
-  </div>
-<!-- Add before closing </body> -->
-<a href="#" class="back-to-top" id="backToTop">↑</a>
-<script>
-window.addEventListener('scroll', function() {
-    var backToTop = document.getElementById('backToTop');
-    if (window.pageYOffset > 300) {
-        backToTop.classList.add('show');
-    } else {
-        backToTop.classList.remove('show');
-    }
-});
-document.getElementById('backToTop').addEventListener('click', function(e) {
-    e.preventDefault();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-});
-</script>
+
+    <section class="section" id="features">
+      <div class="section-head">
+        <p class="eyebrow">Why Sadhaks Choose Us</p>
+        <h2>Built for Devoted Practice</h2>
+        <p>Every feature is designed around one thing — helping your sadhana stay focused, private, and consistent.</p>
+      </div>
+
+      <div class="feature-grid">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="4" r="1.6"/><circle cx="18.5" cy="7.5" r="1.6"/><circle cx="20" cy="14" r="1.6"/><circle cx="16" cy="19.5" r="1.6"/><circle cx="8" cy="19.5" r="1.6"/><circle cx="4" cy="14" r="1.6"/><circle cx="5.5" cy="7.5" r="1.6"/><circle cx="12" cy="12" r="2.4"/></svg>
+          </div>
+          <h3>Japam &amp; Mantra Counter</h3>
+          <p>Instant tap counting with mala-aligned targets — 108, 216, 1008 — and a progress ring for every session.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><circle cx="17" cy="9" r="2.4"/><path d="M14.5 20c.3-2.7 2.3-4.8 5-4.8"/></svg>
+          </div>
+          <h3>Guru-Led Gurukul Community</h3>
+          <p>Join a Gurukul, receive guided targets from your Guru, and grow together through shared, live progress.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>
+          </div>
+          <h3>Session History &amp; Energy Tracker</h3>
+          <p>Every mantra, date, and repetition logged — a complete record of your practice to reflect on and grow from.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.4-9.3-8.6C1.2 8 2.6 4.8 6 4.2c2-.4 3.7.6 6 3 2.3-2.4 4-3.4 6-3 3.4.6 4.8 3.8 3.3 7.2C19 15.6 12 20 12 20z"/></svg>
+          </div>
+          <h3>Always Free &amp; Ad-Free</h3>
+          <p>No subscriptions, no ads, no distractions — ever. Your focus and peace are never for sale.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2" width="10" height="20" rx="2"/><line x1="11" y1="18" x2="13" y2="18"/></svg>
+          </div>
+          <h3>Mobile &amp; Tablet Ready</h3>
+          <p>A fully responsive, installable experience that feels at home on your phone, tablet, or the web.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 4.6-3 8-7 9-4-1-7-4.4-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg>
+          </div>
+          <h3>Fully Private</h3>
+          <p>Your logs are encrypted and visible only to you and, where applicable, your authorized Guru.</p>
+        </div>
+      </div>
+
+      <div class="showcase">
+        <div class="showcase-item"><img src="screenshot1.png" alt="Guru Led Journey — target achieved screen"></div>
+        <div class="showcase-item"><img src="screenshot2.png" alt="Session history — your historical sessions"></div>
+        <div class="showcase-item"><img src="screenshot3.png" alt="Guru dashboard — holistic achievements"></div>
+      </div>
+    </section>
+
+    <section class="section section-narrow" id="faqs">
+      <div class="section-head">
+        <p class="eyebrow">Have Questions?</p>
+        <h2>Frequently Asked Questions</h2>
+      </div>
+      <div class="faq-list">
+        <details class="faq-item" open>
+          <summary>What is Shakthi Sankhya?<span class="faq-plus">+</span></summary>
+          <div class="faq-body"><p>Shakthi Sankhya is a free, ad-free app designed for mantra counting, Japam tracking, spiritual progress visualization, and Gurukul-based community practice.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>Who can use Shakthi Sankhya?<span class="faq-plus">+</span></summary>
+          <div class="faq-body"><p>Both independent practitioners and Gurus or spiritual mentors can use the app, with dedicated features and dashboards for each role.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>Is the app really free and ad-free?<span class="faq-plus">+</span></summary>
+          <div class="faq-body"><p>Yes. Shakthi Sankhya is always free and contains no advertisements, respecting the focus and serenity of your spiritual path.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>How does the Japam counter work?<span class="faq-plus">+</span></summary>
+          <div class="faq-body"><p>The Instant Japam Counter lets you tap for each repetition, set target counts, and instantly see your progress — perfect for focused practice.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>What's included in session history?<span class="faq-plus">+</span></summary>
+          <div class="faq-body"><p>Session history provides complete logs of personal or group practices, including dates, repetition counts, and milestone achievements for meaningful reflection.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>How is my data kept secure?<span class="faq-plus">+</span></summary>
+          <div class="faq-body"><p>All personal feedback and progress are encrypted and only accessible to authorized Gurus or admins, ensuring privacy for every user.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>How can I give feedback or request new features?<span class="faq-plus">+</span></summary>
+          <div class="faq-body"><p>Practitioners can suggest features, report bugs, or communicate with Gurus and the app community directly through in-app feedback forms.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>Can Gurus organize and manage Gurukuls?<span class="faq-plus">+</span></summary>
+          <div class="faq-body"><p>Yes. Gurus can create Gurukuls, assign goals, track the collective progress of disciples, and provide guidance and motivation using advanced oversight tools.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>Does the app work on mobile and tablet?<span class="faq-plus">+</span></summary>
+          <div class="faq-body"><p>Shakthi Sankhya is fully optimized for mobile and tablet devices with a responsive, accessible interface.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>What makes Shakthi Sankhya unique?<span class="faq-plus">+</span></summary>
+          <div class="faq-body"><p>It is specifically built for the Gurukul spiritual model, yet supports individual practice, with always-free access, next-level privacy, and zero distractions.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>What's the support contact email?<span class="faq-plus">+</span></summary>
+          <div class="faq-body"><p>For any help or feedback, reach out to <a href="mailto:support@shakthisankhya.org">support@shakthisankhya.org</a></p></div>
+        </details>
+      </div>
+    </section>
+
+    <section class="section section-narrow" id="support">
+      <div class="section-head">
+        <p class="eyebrow">We're Here to Help</p>
+        <h2>Support</h2>
+        <p>We honor your journey and are here to support your spiritual progress.</p>
+      </div>
+      <div class="support-grid">
+        <div class="support-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M4 19h16"/></svg>
+          </div>
+          <h3>Quick Reference Guide</h3>
+          <p>A simple, easy-to-follow guide to get started with your practice.</p>
+          <a class="btn btn-outline" href="Shakthi Sankhya _ Quick Reference Guide.pdf" target="_blank">Download Guide</a>
+        </div>
+        <div class="support-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+          </div>
+          <h3>Email Support</h3>
+          <p>For help, feature requests, or feedback, reach our team directly.</p>
+          <a class="btn btn-primary" href="mailto:support@shakthisankhya.org">support@shakthisankhya.org</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-narrow" id="copyrights">
+      <div class="copyright-card">
+        <h2>Copyright Notice</h2>
+        <p>
+          © 2025 Sri Gnana Peetam. All content, branding, designs, code, images, and text within the Shakthi Sankhya
+          app and web pages are the intellectual property of Sri Gnana Peetam.
+        </p>
+        <div class="callout">
+          <b>Permission Required:</b> You may not copy, reproduce, modify, or distribute any part of the app or its
+          content in any form without explicit written permission. For collaborations, publication, or reuse,
+          please request permission first.
+        </div>
+        <div class="contact">
+          To request usage rights or report copyright issues, email <a href="mailto:support@shakthisankhya.org">support@shakthisankhya.org</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    Shakthi Sankhya is a free app, offered with respect for your practice and your peace.<br>
+    <a href="mailto:support@shakthisankhya.org">support@shakthisankhya.org</a> ·
+    <a href="privacypolicy.html">Privacy Policy</a> ·
+    <a href="deleteyouraccount.html">Delete Your Account</a>
+  </footer>
+
+  <a href="#" class="back-to-top" id="backToTop" aria-label="Back to top">↑</a>
+  <script src="assets/js/main.js"></script>
 </body>
 </html>
