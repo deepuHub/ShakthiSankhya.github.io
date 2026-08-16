@@ -610,21 +610,153 @@ function detectCategory(text){
 
 /* ===================== DEFAULT DATA (mirrors SGP_Milestones.xlsx) ===================== */
 const DEFAULT_DATA = [
-  {Month:"", Year:2006, Milestone:"Main swami advice to start foundation", Comments:"", Image:""},
-  {Month:"Aug", Year:2008, Milestone:"SCSGP Foundation Day", Comments:"", Image:""},
-  {Month:"Dec", Year:2012, Milestone:"Annual Yagams & programs in Trust office", Comments:"", Image:""},
-  {Month:"Jun", Year:2013, Milestone:"Gou shala Annual contributions", Comments:"", Image:""},
-  {Month:"Oct", Year:2022, Milestone:"Regular annual Annadanam events", Comments:"", Image:""},
-  {Month:"Feb", Year:2025, Milestone:"Mahakhumb Camp - Prayagraj", Comments:"", Image:""},
-  {Month:"Dec", Year:2025, Milestone:"Shakthi Sankhya App Launch", Comments:"", Image:""},
-  {Month:"Jun", Year:2026, Milestone:"Rebranding SGP and New Website Launch", Comments:"", Image:""},
-  {Month:"", Year:"", Milestone:"108 Suhasini Puja", Comments:"", Image:""},
-  {Month:"", Year:"", Milestone:"Birudu Presentation", Comments:"", Image:""},
-  {Month:"", Year:"", Milestone:"Garikapati Swami invited to SCSGP", Comments:"", Image:""},
-  {Month:"", Year:"", Milestone:"Kanchi Swami visited Guruji's house", Comments:"", Image:""},
-  {Month:"", Year:"", Milestone:"Kanchi Swami Paduka Yatra in Anantapur", Comments:"", Image:""},
-  {Month:"", Year:"", Milestone:"Annual community wellness initiatives", Comments:"Annadanam, Vidhyadanam", Image:""},
-  {Month:"", Year:"", Milestone:"Annual Spiritual tours with Shishya Brindam", Comments:"", Image:""}
+  {
+    "Month": "Aug",
+    "Year": 2006,
+    "Milestone": "Kanchi Jagadguru advice to start foundation",
+    "Comments": "When Guruji visited Kancheepuram",
+    "Image": ""
+  },
+  {
+    "Month": "Aug",
+    "Year": 2008,
+    "Milestone": "SCSGP Foundation Day",
+    "Comments": "18-Aug-2008 is THE DAY!",
+    "Image": ""
+  },
+  {
+    "Month": "Aug",
+    "Year": 2012,
+    "Milestone": "Nithya Smarana and Puja Vidhanam Book",
+    "Comments": "First Books by Trust",
+    "Image": ""
+  },
+  {
+    "Month": "Jun",
+    "Year": 2013,
+    "Milestone": "Gou shala Annual contributions",
+    "Comments": "Somuladoddi Gaushala contribution",
+    "Image": ""
+  },
+  {
+    "Month": "June",
+    "Year": 2013,
+    "Milestone": "Sri. Garikapati gari Pravachanam in Atp",
+    "Comments": "First time ever in Atp",
+    "Image": ""
+  },
+  {
+    "Month": "Mar",
+    "Year": 2013,
+    "Milestone": "Asthadasha Laksha Kumkumarchana in Produttur",
+    "Comments": "more than 400 ppl participated",
+    "Image": ""
+  },
+  {
+    "Month": "Dec",
+    "Year": 2014,
+    "Milestone": "Started Yearly Annual Yagams",
+    "Comments": "Every year in December Trust performs a yagam which is attended by hundreds of devotees. Started with Srividhya Mahayagam",
+    "Image": ""
+  },
+  {
+    "Month": "Aug",
+    "Year": 2018,
+    "Milestone": "Paramacharya swami Paduka yatra in Atp",
+    "Comments": "First time ever in Atp by SGP",
+    "Image": ""
+  },
+  {
+    "Month": "Aug",
+    "Year": 2018,
+    "Milestone": "10th Year SGP Celebration",
+    "Comments": "Artists from various Art forms are felicitated",
+    "Image": ""
+  },
+  {
+    "Month": "June",
+    "Year": 2018,
+    "Milestone": "Book distribution, Supporting Poor students",
+    "Comments": "More than 3000 students benefitted",
+    "Image": ""
+  },
+  {
+    "Month": "Dec",
+    "Year": 2019,
+    "Milestone": "Ashtottara shata (108) suvasini puja - Sri Lalitha Yaagam",
+    "Comments": "",
+    "Image": ""
+  },
+  {
+    "Month": "July",
+    "Year": 2019,
+    "Milestone": "Pandemic time - Aggresively supported all walks of ppl",
+    "Comments": "Various types of Seva activities",
+    "Image": ""
+  },
+  {
+    "Month": "Oct",
+    "Year": 2022,
+    "Milestone": "Monthly Narayana Seva (Annadaanam) Start",
+    "Comments": "Monthly twice SGP does Naryana seva and on all trust programs",
+    "Image": ""
+  },
+  {
+    "Month": "Mar",
+    "Year": 2022,
+    "Milestone": "Kanchi swami visited Guruji house",
+    "Comments": "Sri. Sri. Sril Shankara vijayendra saraswathi Swami vaari Vijaya yatra",
+    "Image": ""
+  },
+  {
+    "Month": "Oct",
+    "Year": 2022,
+    "Milestone": "Sharanavaratri Celebrations - 10 days Events",
+    "Comments": "10 days chandi parayana, homas, Chakrarchana. Annadaanam, Ammavari utsavalu",
+    "Image": ""
+  },
+  {
+    "Month": "July",
+    "Year": 2024,
+    "Milestone": "Puraskaram to Sri. Samavedam garu and Sri. Goteti Srinivasa Rao garu",
+    "Comments": "Launched many books from SGP. Samavedam gariki - Srividhya GnanaDeepa Shikha.",
+    "Image": ""
+  },
+  {
+    "Month": "Dec",
+    "Year": 2025,
+    "Milestone": "Shakthi Sankhya App Launch",
+    "Comments": "First indigenious app to keep track of our japa counts",
+    "Image": ""
+  },
+  {
+    "Month": "Feb",
+    "Year": 2025,
+    "Milestone": "Mahakhumb Camp - Prayagraj",
+    "Comments": "Once in 144 years auspicious event attend with Gurujis conducted by Karpatri swamis' parampara",
+    "Image": ""
+  },
+  {
+    "Month": "Jun",
+    "Year": 2026,
+    "Milestone": "Rebranding SGP and New Website Launch",
+    "Comments": "New logo, website",
+    "Image": ""
+  },
+  {
+    "Month": "Jan",
+    "Year": 2026,
+    "Milestone": "SGP Founder Puraskaram - Dharmika Karya Nirvahana Jeevana",
+    "Comments": "Puraskaram by Anantha Bramhana seva samshta and Akhila Bharatiya Bramahana maha sangham",
+    "Image": ""
+  },
+  {
+    "Month": "July",
+    "Year": 2026,
+    "Milestone": "Vaggeyakara Vaibhavam",
+    "Comments": "Sri. Nihal gari kacheri",
+    "Image": ""
+  }
 ];
 
 const MONTH_ORDER = {jan:1,feb:2,mar:3,apr:4,may:5,jun:6,jul:7,aug:8,sep:9,oct:10,nov:11,dec:12};
