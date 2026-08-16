@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sri Gnana Peetam — Our Sacred Journey</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<style>
+  :root{
+    --accent:#FF7A45;        /* bold year / coral-orange, like the infographic reference */
+    --accent-light:#FFA36B;
+    --maroon:#7A1B34;
+    --maroon-dark:#4E0F20;
+    --gold:#C9A227;
+    --gold-light:#EFD98C;
+    --bg-dark:#1C0C13;
+    --bg-dark2:#33121E;
+    --surface:rgba(255,255,255,0.045);
+    --surface-border:rgba(201,162,39,0.28);
+    --text:#F6EDE1;
+    --text-muted:#C7AF9C;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Poppins',sans-serif;
+    background:
+      radial-gradient(circle at 15% 0%, rgba(201,162,39,0.10), transparent 42%),
+      radial-gradient(circle at 90% 30%, rgba(255,122,69,0.07), transparent 45%),
+      linear-gradient(180deg, var(--bg-dark) 0%, var(--bg-dark2) 45%, var(--bg-dark) 100%);
+    color:var(--text);
+    min-height:100vh;
+    padding-bottom:60px;
+    overflow-x:hidden;
+  }
+  h1,h2,h3{font-family:'Cormorant Garamond',serif;}
+  ::selection{background:var(--gold-light);color:var(--maroon-dark);}
+
+  /* ---------- HERO BANNER ---------- */
+  header{
+    background:linear-gradient(120deg,var(--maroon) 0%, var(--maroon-dark) 100%);
+    color:var(--text);
+    text-align:center;
+    padding:60px 20px 54px;
+    position:relative;
+    overflow:hidden;
+    border-bottom:3px solid var(--gold);
+  }
+  .mandala{
+    position:absolute;
+    top:50%;left:50%;
+    width:900px;height:900px;
+    transform:translate(-50%,-50%);
+    opacity:0.06;
+    animation:spin 140s linear infinite;
+    pointer-events:none;
+  }
+  @keyframes spin{ to{ transform:translate(-50%,-50%) rotate(360deg);} }
+  .rays{
+    position:absolute;
+    inset:0;
+    background:conic-gradient(from 0deg, rgba(201,162,39,0.10) 0deg, transparent 20deg, transparent 40deg, rgba(201,162,39,0.10) 60deg, transparent 80deg, transparent 100deg, rgba(201,162,39,0.10) 120deg, transparent 140deg, transparent 160deg, rgba(201,162,39,0.10) 180deg, transparent 200deg, transparent 220deg, rgba(201,162,39,0.10) 240deg, transparent 260deg, transparent 280deg, rgba(201,162,39,0.10) 300deg, transparent 320deg, transparent 340deg, rgba(201,162,39,0.10) 360deg);
+    animation:spin 90s linear infinite reverse;
+    opacity:0.5;
+  }
+  .particle{
+    position:absolute;
+    bottom:-20px;
+    width:6px;height:6px;
+    border-radius:50%;
+    background:radial-gradient(circle, var(--gold-light), transparent 70%);
+    box-shadow:0 0 8px 2px rgba(239,217,140,0.6);
+    animation:float 9s ease-in infinite;
+    opacity:0;
+  }
+  @keyframes float{
+    0%{ transform:translateY(0) translateX(0); opacity:0; }
+    10%{ opacity:0.9; }
+    100%{ transform:translateY(-360px) translateX(var(--drift,20px)); opacity:0; }
+  }
+  header .content{position:relative;z-index:2;display:flex;align-items:center;justify-content:center;gap:26px;}
+  .flank-icon{
+    font-size:1.9rem;
+    opacity:0.85;
+    filter:drop-shadow(0 0 8px rgba(239,217,140,0.4));
+  }
+  .title-block{display:flex;flex-direction:column;align-items:center;}
+  .om{
+    font-size:2.2rem;
+    color:var(--gold-light);
+    display:block;
+    margin-bottom:6px;
+    text-shadow:0 0 20px rgba(239,217,140,0.55);
+    animation:glow 4s ease-in-out infinite;
+  }
+  @keyframes glow{
+    0%,100%{ text-shadow:0 0 16px rgba(239,217,140,0.4); }
+    50%{ text-shadow:0 0 30px rgba(239,217,140,0.85); }
+  }
+  header h1{
+    font-size:clamp(2.1rem,4.6vw,3.2rem);
+    font-weight:700;
+    letter-spacing:3px;
+    color:#fff;
+    text-transform:uppercase;
+  }
+  header p.subtitle{
+    margin-top:10px;
+    font-size:0.92rem;
+    font-weight:300;
+    color:var(--gold-light);
+    letter-spacing:2.5px;
+  }
+  .divider{
+    width:130px;
+    height:2px;
+    margin:18px auto 0;
+    background:linear-gradient(90deg, transparent, var(--gold), transparent);
+    position:relative;
+  }
+  .divider::after{
+    content:"❖";
+    position:absolute;
+    top:50%;left:50%;
+    transform:translate(-50%,-50%);
+    background:var(--maroon-dark);
+    color:var(--gold);
+    padding:0 10px;
+    font-size:0.9rem;
+  }
+
+  /* ---------- STATS ---------- */
+  .stats{
+    max-width:900px;
+    margin:34px auto 0;
+    position:relative;
+    z-index:3;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:16px;
+    padding:0 20px;
+  }
+  .stat-card{
+    background:var(--surface);
+    backdrop-filter:blur(6px);
+    border-radius:16px;
+    padding:20px 12px;
+    text-align:center;
+    box-shadow:0 10px 28px rgba(0,0,0,0.25);
+    border:1px solid var(--surface-border);
+  }
+  .stat-card .num{
+    font-family:'Cormorant Garamond',serif;
+    font-size:2.1rem;
+    font-weight:700;
+    color:var(--accent);
+    line-height:1;
+  }
+  .stat-card .lbl{
+    margin-top:6px;
+    font-size:0.72rem;
+    letter-spacing:0.8px;
+    text-transform:uppercase;
+    color:var(--text-muted);
+  }
+
+  /* ---------- CONTROLS ---------- */
+  .controls{
+    max-width:1000px;
+    margin:34px auto 0;
+    padding:0 20px;
+  }
+  .controls-row{
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+    align-items:center;
+    justify-content:space-between;
+    background:var(--surface);
+    backdrop-filter:blur(6px);
+    border:1px solid var(--surface-border);
+    border-radius:14px;
+    box-shadow:0 8px 22px rgba(0,0,0,0.2);
+    padding:14px 18px;
+  }
+  .search-box{
+    flex:1;
+    min-width:200px;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    background:rgba(255,255,255,0.06);
+    border:1px solid var(--surface-border);
+    border-radius:24px;
+    padding:8px 16px;
+  }
+  .search-box svg{width:16px;height:16px;color:var(--gold);flex-shrink:0;}
+  .search-box input{
+    border:none;background:transparent;outline:none;
+    font-family:'Poppins',sans-serif;font-size:0.85rem;
+    width:100%;color:var(--text);
+  }
+  .search-box input::placeholder{color:var(--text-muted);}
+  .action-btns{display:flex;gap:10px;flex-wrap:wrap;}
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    padding:9px 18px;
+    border-radius:30px;
+    font-size:0.8rem;
+    font-weight:500;
+    cursor:pointer;
+    border:none;
+    transition:transform .15s ease, box-shadow .15s ease;
+    font-family:'Poppins',sans-serif;
+  }
+  .btn:hover{transform:translateY(-1px);}
+  .btn-primary{
+    background:linear-gradient(135deg,var(--accent),var(--accent-light));
+    color:#2A0D06;
+    font-weight:600;
+    box-shadow:0 4px 14px rgba(255,122,69,0.3);
+  }
+  .btn-ghost{
+    background:rgba(255,255,255,0.06);
+    color:var(--gold-light);
+    border:1px solid var(--surface-border);
+  }
+  #fileInput{display:none;}
+  #statusMsg{font-size:0.72rem;color:var(--text-muted);width:100%;text-align:right;margin-top:4px;}
+
+  .chips-row{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+    margin-top:14px;
+  }
+  .chip{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    padding:6px 14px;
+    border-radius:20px;
+    background:rgba(255,255,255,0.05);
+    border:1px solid var(--surface-border);
+    color:var(--gold-light);
+    font-size:0.75rem;
+    cursor:pointer;
+    transition:all .15s ease;
+  }
+  .chip svg{width:13px;height:13px;}
+  .chip:hover{background:rgba(255,255,255,0.1);}
+  .chip.active{
+    background:linear-gradient(135deg,var(--accent),var(--accent-light));
+    color:#2A0D06;
+    border-color:var(--accent);
+    font-weight:600;
+  }
+
+  .year-nav{
+    display:flex;
+    gap:8px;
+    overflow-x:auto;
+    padding:14px 2px 4px;
+    margin-top:6px;
+  }
+  .year-pill{
+    flex-shrink:0;
+    padding:5px 14px;
+    border-radius:16px;
+    background:rgba(255,255,255,0.05);
+    color:var(--gold-light);
+    font-size:0.75rem;
+    font-weight:500;
+    cursor:pointer;
+    border:1px dashed var(--gold);
+    transition:all .15s ease;
+  }
+  .year-nav::-webkit-scrollbar{height:5px;}
+  .year-nav::-webkit-scrollbar-thumb{background:var(--gold);border-radius:5px;}
+  .year-pill:hover{background:var(--gold);color:var(--maroon-dark);}
+
+  /* ---------- SECTION TITLES ---------- */
+  .section-title{
+    text-align:center;
+    max-width:700px;
+    margin:56px auto 30px;
+    padding:0 20px;
+  }
+  .section-title h2{
+    font-size:2rem;
+    color:var(--gold-light);
+    font-weight:600;
+    letter-spacing:1px;
+  }
+  .section-title p{
+    color:var(--text-muted);
+    font-size:0.9rem;
+    margin-top:6px;
+  }
+
+  /* ---------- TIMELINE ---------- */
+  .timeline-wrap{
+    max-width:1020px;
+    margin:0 auto;
+    padding:20px 20px 0;
+    position:relative;
+  }
+  .timeline-line{
+    position:absolute;
+    left:50%;
+    top:0;
+    bottom:0;
+    width:3px;
+    background:linear-gradient(180deg, transparent, var(--gold) 4%, var(--gold) 96%, transparent);
+    transform:translateX(-50%);
+    box-shadow:0 0 12px rgba(201,162,39,0.35);
+  }
+  .tl-item{
+    position:relative;
+    width:100%;
+    padding:30px 0;
+    display:flex;
+    opacity:0;
+    transform:translateY(28px);
+    transition:opacity .7s ease, transform .7s ease;
+  }
+  .tl-item.visible{opacity:1;transform:translateY(0);}
+  .tl-item.left{justify-content:flex-start;}
+  .tl-item.right{justify-content:flex-end;}
+  .tl-item.hidden-filtered{display:none !important;}
+  .tl-card{
+    width:44%;
+    background:transparent;
+    padding:0;
+    position:relative;
+  }
+  .tl-item.left .tl-card{text-align:right;padding-right:30px;}
+  .tl-item.right .tl-card{text-align:left;padding-left:30px;}
+  .tl-item.left .tl-card::before{
+    content:"";
+    position:absolute;
+    top:24px;right:-2px;
+    width:32px;height:2px;
+    background:linear-gradient(90deg, transparent, var(--gold));
+  }
+  .tl-item.right .tl-card::before{
+    content:"";
+    position:absolute;
+    top:24px;left:-2px;
+    width:32px;height:2px;
+    background:linear-gradient(270deg, transparent, var(--gold));
+  }
+  .tl-card:hover .badge{color:var(--accent-light);}
+  .tl-dot{
+    position:absolute;
+    left:50%;
+    top:8px;
+    transform:translateX(-50%);
+    width:46px;height:46px;
+    background:#FBF3E2;
+    border:3px solid var(--gold);
+    border-radius:14px;
+    box-shadow:0 0 0 6px var(--bg-dark), 0 0 18px rgba(201,162,39,0.5);
+    z-index:2;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .tl-dot svg{width:20px;height:20px;color:var(--maroon-dark);}
+  .cat-tag{
+    font-size:0.65rem;
+    text-transform:uppercase;
+    letter-spacing:1px;
+    color:var(--gold);
+    font-weight:600;
+    margin-bottom:4px;
+    display:block;
+  }
+  .badge{
+    font-family:'Cormorant Garamond',serif;
+    font-weight:800;
+    font-size:2rem;
+    letter-spacing:0.5px;
+    color:var(--accent);
+    display:block;
+    line-height:1.1;
+    transition:color .2s ease;
+  }
+  .tl-card h3{
+    font-size:1.2rem;
+    color:var(--text);
+    font-weight:600;
+    line-height:1.3;
+    margin-top:4px;
+    text-transform:uppercase;
+    letter-spacing:0.4px;
+  }
+  .tl-card .comment{
+    font-size:0.87rem;
+    color:var(--text-muted);
+    font-style:italic;
+    margin-top:8px;
+    line-height:1.5;
+  }
+  .tl-card img{
+    width:100%;
+    border-radius:10px;
+    margin-top:12px;
+    display:block;
+    border:1px solid var(--surface-border);
+  }
+
+  /* ---------- UNDATED GRID ---------- */
+  .grid-wrap{
+    max-width:1100px;
+    margin:10px auto 0;
+    padding:0 20px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+  }
+  .grid-card{
+    background:var(--surface);
+    backdrop-filter:blur(6px);
+    border-radius:14px;
+    padding:22px;
+    border:1px solid var(--surface-border);
+    box-shadow:0 8px 22px rgba(0,0,0,0.2);
+    position:relative;
+    overflow:hidden;
+    opacity:0;
+    transform:translateY(24px) scale(.97);
+    transition:opacity .6s ease, transform .6s ease, border-color .2s ease;
+  }
+  .grid-card.visible{opacity:1;transform:translateY(0) scale(1);}
+  .grid-card.hidden-filtered{display:none !important;}
+  .grid-card:hover{transform:translateY(-4px) scale(1);border-color:var(--gold);}
+  .card-head{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
+  .icon-chip{
+    width:34px;height:34px;
+    border-radius:10px;
+    background:#FBF3E2;
+    border:2px solid var(--gold);
+    display:flex;align-items:center;justify-content:center;
+    flex-shrink:0;
+  }
+  .icon-chip svg{width:16px;height:16px;color:var(--maroon-dark);}
+  .grid-card h3{
+    font-size:1.1rem;
+    color:var(--gold-light);
+    font-weight:600;
+    margin-bottom:6px;
+    line-height:1.3;
+  }
+  .grid-card .comment{
+    font-size:0.85rem;
+    color:var(--text-muted);
+    font-style:italic;
+    line-height:1.5;
+  }
+  .grid-card img{
+    width:100%;
+    border-radius:10px;
+    margin-top:10px;
+    border:1px solid var(--surface-border);
+  }
+
+  .no-results{
+    text-align:center;
+    color:var(--text-muted);
+    padding:40px 20px;
+    display:none;
+    font-style:italic;
+  }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width:760px){
+    .timeline-line{left:22px;}
+    .tl-item.left, .tl-item.right{justify-content:flex-start;}
+    .tl-card{width:calc(100% - 60px); margin-left:50px;}
+    .tl-item.left .tl-card, .tl-item.right .tl-card{text-align:left;padding-left:0;padding-right:0;}
+    .tl-item.left .tl-card::before, .tl-item.right .tl-card::before{display:none;}
+    .tl-dot{left:22px;width:38px;height:38px;}
+    .tl-dot svg{width:17px;height:17px;}
+    .stats{grid-template-columns:1fr 1fr 1fr;gap:10px;}
+    .stat-card{padding:14px 6px;}
+    .stat-card .num{font-size:1.5rem;}
+    header .content{gap:12px;}
+    .flank-icon{font-size:1.4rem;}
+  }
+
+  footer{
+    text-align:center;
+    margin-top:70px;
+    padding:30px 20px;
+    color:var(--text-muted);
+    font-size:0.8rem;
+    border-top:1px solid var(--surface-border);
+  }
+  footer .om{font-size:1.3rem;margin-bottom:6px;color:var(--gold);text-shadow:none;animation:none;}
+
+  @media print{
+    .controls, .particle, .rays, .mandala, .year-nav{display:none !important;}
+    header{padding:30px 10px;}
+    .tl-item, .grid-card{opacity:1 !important; transform:none !important;}
+    body{background:#fff;color:#000;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="rays"></div>
+  <svg class="mandala" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+    <g fill="none" stroke="#EFD98C" stroke-width="0.6">
+      <circle cx="100" cy="100" r="90"/><circle cx="100" cy="100" r="70"/><circle cx="100" cy="100" r="50"/><circle cx="100" cy="100" r="30"/>
+      <g id="petals"></g>
+    </g>
+  </svg>
+  <div class="content">
+    <span class="flank-icon">🪔</span>
+    <div class="title-block">
+      <span class="om">ॐ</span>
+      <h1>Our Sacred Journey</h1>
+      <p class="subtitle">MILESTONES OF SRI GNANA PEETAM</p>
+      <div class="divider"></div>
+    </div>
+    <span class="flank-icon">🪔</span>
+  </div>
+  <div id="particles"></div>
+</header>
+
+<div class="stats" id="statsWrap">
+  <div class="stat-card"><div class="num" data-target="0" id="statYears">0</div><div class="lbl">Years of Service</div></div>
+  <div class="stat-card"><div class="num" data-target="0" id="statMilestones">0</div><div class="lbl">Milestones</div></div>
+  <div class="stat-card"><div class="num" data-target="0" id="statCategories">0</div><div class="lbl">Sacred Categories</div></div>
+</div>
+
+<div class="controls">
+  <div class="controls-row">
+    <div class="search-box">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+      <input type="text" id="searchInput" placeholder="Search milestones...">
+    </div>
+    <div class="action-btns">
+      <label class="btn btn-primary" for="fileInput">⬆ Upload Excel</label>
+      <input type="file" id="fileInput" accept=".xlsx,.xls,.csv">
+      <button class="btn btn-ghost" id="printBtn">🖨 Print / Export</button>
+    </div>
+  </div>
+  <div class="chips-row" id="chipsRow"></div>
+  <div class="year-nav" id="yearNav"></div>
+  <div id="statusMsg">Showing default milestones</div>
+</div>
+
+<div class="section-title">
+  <h2>Timeline of Grace</h2>
+  <p>Key milestones in chronological order</p>
+</div>
+<div class="timeline-wrap" id="timelineWrap">
+  <div class="timeline-line"></div>
+</div>
+<div class="no-results" id="emptyMsg">No dated milestones match your search.</div>
+
+<div class="section-title" id="undatedTitle">
+  <h2>Timeless Moments</h2>
+  <p>Cherished milestones woven into our journey</p>
+</div>
+<div class="grid-wrap" id="gridWrap"></div>
+<div class="no-results" id="emptyGridMsg">No matching milestones.</div>
+
+<footer>
+  <span class="om">ॐ</span>
+  <div>Sri Gnana Peetam &middot; A Sacred Mission of Service</div>
+</footer>
+
+<script>
+/* ===================== ICONS ===================== */
+const ICONS = {
+  foundation:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 20h10"/><path d="M12 20v-6"/><path d="M12 14C7 14 5 10 5 6c5 0 7 3 7 8z"/><path d="M12 14c5 0 7-4 7-8-5 0-7 3-7 8z"/></svg>`,
+  ritual:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c-1 3-4 4-4 8a4 4 0 0 0 8 0c0-1.5-.5-2.5-1-3.5.2 1.5-.8 2.5-1.5 2.5.6-2-.4-5-1.5-7z"/><path d="M6 21h12"/></svg>`,
+  gauseva:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 4 13a1 1 0 0 1 1-1c5 0 9 3 9 8a1 1 0 0 1-1 1 6 6 0 0 1-2-1z"/><path d="M4 12c0-5 4-8 9-8"/></svg>`,
+  seva:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h18a9 5 0 0 1-18 0z"/><path d="M12 3c1 1 1 2 0 3"/><path d="M9 4c.6.6.6 1.4 0 2"/></svg>`,
+  digital:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 4.6L18 9l-4.2 1.4L12 15l-1.8-4.6L6 9l4.2-1.4z"/><path d="M19 15l.7 1.8L21.5 17.5l-1.8.7-.7 1.8-.7-1.8-1.8-.7 1.8-.7z"/></svg>`,
+  pilgrimage:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20l6-11 4 6 3-4 5 9z"/></svg>`,
+  guru:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.5 6.9L21 9.8l-5.5 4.3L17 21l-5-3.8L7 21l1.5-6.9L3 9.8l6.5-.9z"/></svg>`,
+  honour:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="5"/><path d="M8.5 13L7 21l5-3 5 3-1.5-8"/></svg>`,
+  general:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="2.3"/><path d="M12 2c2 3 2 5 0 7-2-2-2-4 0-7z"/><path d="M12 22c2-3 2-5 0-7-2 2-2 4 0 7z"/><path d="M2 12c3-2 5-2 7 0-2 2-4 2-7 0z"/><path d="M22 12c-3-2-5-2-7 0 2 2 4 2 7 0z"/></svg>`
+};
+const CATEGORY_LABELS = {
+  foundation:"Foundation", ritual:"Sacred Rituals", gauseva:"Gau Seva", seva:"Community Seva",
+  digital:"Digital Milestones", pilgrimage:"Pilgrimage & Tours", guru:"Guru's Grace", honour:"Recognition", general:"Milestone"
+};
+function detectCategory(text){
+  const t = (text||"").toLowerCase();
+  if(/foundation|advice to start/.test(t)) return 'foundation';
+  if(/app|website|launch|rebrand|digital/.test(t)) return 'digital';
+  if(/camp|yatra|tour|prayagraj|kumbh/.test(t)) return 'pilgrimage';
+  if(/yagam|puja|homam|suhasini|yaga/.test(t)) return 'ritual';
+  if(/gou shala|gaushala|cow|gau seva/.test(t)) return 'gauseva';
+  if(/annadanam|vidhya|meal|food|notebook|welfare/.test(t)) return 'seva';
+  if(/birudu|felicitation|presentation|honour|honor/.test(t)) return 'honour';
+  if(/swami|guruji|kanchi/.test(t)) return 'guru';
+  return 'general';
+}
+
+/* ===================== DEFAULT DATA (mirrors SGP_Milestones.xlsx) ===================== */
+const DEFAULT_DATA = [
+  {Month:"", Year:2006, Milestone:"Main swami advice to start foundation", Comments:"", Image:""},
+  {Month:"Aug", Year:2008, Milestone:"SCSGP Foundation Day", Comments:"", Image:""},
+  {Month:"Dec", Year:2012, Milestone:"Annual Yagams & programs in Trust office", Comments:"", Image:""},
+  {Month:"Jun", Year:2013, Milestone:"Gou shala Annual contributions", Comments:"", Image:""},
+  {Month:"Oct", Year:2022, Milestone:"Regular annual Annadanam events", Comments:"", Image:""},
+  {Month:"Feb", Year:2025, Milestone:"Mahakhumb Camp - Prayagraj", Comments:"", Image:""},
+  {Month:"Dec", Year:2025, Milestone:"Shakthi Sankhya App Launch", Comments:"", Image:""},
+  {Month:"Jun", Year:2026, Milestone:"Rebranding SGP and New Website Launch", Comments:"", Image:""},
+  {Month:"", Year:"", Milestone:"108 Suhasini Puja", Comments:"", Image:""},
+  {Month:"", Year:"", Milestone:"Birudu Presentation", Comments:"", Image:""},
+  {Month:"", Year:"", Milestone:"Garikapati Swami invited to SCSGP", Comments:"", Image:""},
+  {Month:"", Year:"", Milestone:"Kanchi Swami visited Guruji's house", Comments:"", Image:""},
+  {Month:"", Year:"", Milestone:"Kanchi Swami Paduka Yatra in Anantapur", Comments:"", Image:""},
+  {Month:"", Year:"", Milestone:"Annual community wellness initiatives", Comments:"Annadanam, Vidhyadanam", Image:""},
+  {Month:"", Year:"", Milestone:"Annual Spiritual tours with Shishya Brindam", Comments:"", Image:""}
+];
+
+const MONTH_ORDER = {jan:1,feb:2,mar:3,apr:4,may:5,jun:6,jul:7,aug:8,sep:9,oct:10,nov:11,dec:12};
+
+function normRow(raw){
+  const get = (obj, key) => {
+    const k = Object.keys(obj).find(k => k.trim().toLowerCase() === key);
+    return k ? obj[k] : "";
+  };
+  const clean = v => (v === undefined || v === null) ? "" : String(v).trim();
+  return {
+    Month: clean(get(raw,"month")),
+    Year: clean(get(raw,"year")),
+    Milestone: clean(get(raw,"milestone")),
+    Comments: clean(get(raw,"comments")),
+    Image: clean(get(raw,"image"))
+  };
+}
+function escapeHtml(str){
+  return str.replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+}
+
+let observer;
+function initObserver(){
+  observer = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, {threshold:0.12});
+}
+
+function animateCount(el, target, suffix){
+  suffix = suffix || "";
+  const dur = 1000;
+  const start = performance.now();
+  function tick(now){
+    const p = Math.min((now-start)/dur, 1);
+    const val = Math.round(target * (1 - Math.pow(1-p, 3)));
+    el.textContent = val + suffix;
+    if(p < 1) requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+}
+
+let CURRENT_DATED = [], CURRENT_UNDATED = [];
+let activeCategory = 'all';
+
+function render(rows){
+  const cleaned = rows.map(normRow).filter(r => r.Milestone !== "");
+  cleaned.forEach(r => { r.category = detectCategory(r.Milestone + " " + r.Comments); });
+
+  CURRENT_DATED = cleaned.filter(r => r.Year !== "" && !isNaN(parseInt(r.Year)));
+  CURRENT_UNDATED = cleaned.filter(r => r.Year === "" || isNaN(parseInt(r.Year)));
+
+  CURRENT_DATED.sort((a,b)=>{
+    const ay = parseInt(a.Year), by = parseInt(b.Year);
+    if(ay !== by) return ay - by;
+    const am = MONTH_ORDER[a.Month.slice(0,3).toLowerCase()] || 0;
+    const bm = MONTH_ORDER[b.Month.slice(0,3).toLowerCase()] || 0;
+    return am - bm;
+  });
+
+  buildStats(cleaned);
+  buildChips(cleaned);
+  buildYearNav();
+  buildTimeline();
+  buildGrid();
+  applyFilters();
+}
+
+function buildStats(cleaned){
+  const years = CURRENT_DATED.map(r=>parseInt(r.Year)).filter(y=>!isNaN(y));
+  // "Founded" = the milestone explicitly marking Foundation Day; fall back to the
+  // earliest dated milestone if no such row exists. Years of service run from
+  // that founding year to the current calendar year (not to the latest row,
+  // since the sheet may include forward-looking/future milestones).
+  const foundingRow = CURRENT_DATED.find(r => /foundation day/i.test(r.Milestone));
+  const foundingYear = foundingRow ? parseInt(foundingRow.Year) : (years.length ? Math.min(...years) : null);
+  const currentYear = new Date().getFullYear();
+  const span = foundingYear ? Math.max(0, currentYear - foundingYear) : 0;
+  const cats = new Set(cleaned.map(r=>r.category));
+  const statsWrap = document.getElementById('statsWrap');
+  statsWrap.querySelectorAll('.num').forEach(el=>{ el.textContent = '0'; });
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        animateCount(document.getElementById('statYears'), span, '+');
+        animateCount(document.getElementById('statMilestones'), cleaned.length, '');
+        animateCount(document.getElementById('statCategories'), cats.size, '');
+        io.disconnect();
+      }
+    });
+  }, {threshold:0.3});
+  io.observe(statsWrap);
+}
+
+function buildChips(cleaned){
+  const cats = [...new Set(cleaned.map(r=>r.category))];
+  const row = document.getElementById('chipsRow');
+  row.innerHTML = '';
+  const allChip = document.createElement('div');
+  allChip.className = 'chip active';
+  allChip.textContent = 'All';
+  allChip.dataset.cat = 'all';
+  row.appendChild(allChip);
+  cats.forEach(c=>{
+    const chip = document.createElement('div');
+    chip.className = 'chip';
+    chip.dataset.cat = c;
+    chip.innerHTML = ICONS[c] + '<span>' + CATEGORY_LABELS[c] + '</span>';
+    row.appendChild(chip);
+  });
+  activeCategory = 'all';
+  row.querySelectorAll('.chip').forEach(chip=>{
+    chip.addEventListener('click', ()=>{
+      row.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
+      chip.classList.add('active');
+      activeCategory = chip.dataset.cat;
+      applyFilters();
+    });
+  });
+}
+
+function buildYearNav(){
+  const years = [...new Set(CURRENT_DATED.map(r=>r.Year))];
+  const nav = document.getElementById('yearNav');
+  nav.innerHTML = '';
+  years.forEach(y=>{
+    const pill = document.createElement('div');
+    pill.className = 'year-pill';
+    pill.textContent = y;
+    pill.addEventListener('click', ()=>{
+      const target = document.querySelector(`.tl-item[data-year="${y}"]`);
+      if(target) target.scrollIntoView({behavior:'smooth', block:'center'});
+    });
+    nav.appendChild(pill);
+  });
+}
+
+function buildTimeline(){
+  const wrap = document.getElementById('timelineWrap');
+  wrap.innerHTML = '<div class="timeline-line"></div>';
+  CURRENT_DATED.forEach((item, idx)=>{
+    const side = idx % 2 === 0 ? 'left' : 'right';
+    const div = document.createElement('div');
+    div.className = `tl-item ${side}`;
+    div.dataset.year = item.Year;
+    div.dataset.cat = item.category;
+    div.dataset.search = (item.Milestone + ' ' + item.Comments).toLowerCase();
+    const badgeText = [item.Month, item.Year].filter(Boolean).join(' ');
+    div.innerHTML = `
+      <div class="tl-dot">${ICONS[item.category]}</div>
+      <div class="tl-card">
+        <span class="cat-tag">${CATEGORY_LABELS[item.category]}</span>
+        <span class="badge">${badgeText}</span>
+        <h3>${escapeHtml(item.Milestone)}</h3>
+        ${item.Comments ? `<div class="comment">${escapeHtml(item.Comments)}</div>` : ''}
+        ${item.Image ? `<img src="${escapeHtml(item.Image)}" alt="${escapeHtml(item.Milestone)}" onerror="this.style.display='none'">` : ''}
+      </div>`;
+    wrap.appendChild(div);
+    observer.observe(div);
+  });
+}
+
+function buildGrid(){
+  const gridWrap = document.getElementById('gridWrap');
+  const undatedTitle = document.getElementById('undatedTitle');
+  gridWrap.innerHTML = '';
+  if(CURRENT_UNDATED.length === 0){
+    undatedTitle.style.display = 'none';
+    gridWrap.style.display = 'none';
+    return;
+  }
+  undatedTitle.style.display = '';
+  gridWrap.style.display = '';
+  CURRENT_UNDATED.forEach(item=>{
+    const div = document.createElement('div');
+    div.className = 'grid-card';
+    div.dataset.cat = item.category;
+    div.dataset.search = (item.Milestone + ' ' + item.Comments).toLowerCase();
+    div.innerHTML = `
+      <div class="card-head"><div class="icon-chip">${ICONS[item.category]}</div><span class="cat-tag" style="margin:0;">${CATEGORY_LABELS[item.category]}</span></div>
+      <h3>${escapeHtml(item.Milestone)}</h3>
+      ${item.Comments ? `<div class="comment">${escapeHtml(item.Comments)}</div>` : ''}
+      ${item.Image ? `<img src="${escapeHtml(item.Image)}" alt="${escapeHtml(item.Milestone)}" onerror="this.style.display='none'">` : ''}`;
+    gridWrap.appendChild(div);
+    observer.observe(div);
+  });
+}
+
+function applyFilters(){
+  const q = document.getElementById('searchInput').value.trim().toLowerCase();
+  let visibleTl = 0, visibleGrid = 0;
+  document.querySelectorAll('.tl-item').forEach(el=>{
+    const matchCat = activeCategory === 'all' || el.dataset.cat === activeCategory;
+    const matchQ = !q || el.dataset.search.includes(q);
+    const show = matchCat && matchQ;
+    el.classList.toggle('hidden-filtered', !show);
+    if(show) visibleTl++;
+  });
+  document.querySelectorAll('.grid-card').forEach(el=>{
+    const matchCat = activeCategory === 'all' || el.dataset.cat === activeCategory;
+    const matchQ = !q || el.dataset.search.includes(q);
+    const show = matchCat && matchQ;
+    el.classList.toggle('hidden-filtered', !show);
+    if(show) visibleGrid++;
+  });
+  document.getElementById('emptyMsg').style.display = visibleTl === 0 ? 'block' : 'none';
+  const gridWrap = document.getElementById('gridWrap');
+  document.getElementById('emptyGridMsg').style.display = (visibleGrid === 0 && gridWrap.children.length > 0) ? 'block' : 'none';
+}
+
+/* ===================== INIT ===================== */
+initObserver();
+render(DEFAULT_DATA);
+
+document.getElementById('searchInput').addEventListener('input', applyFilters);
+document.getElementById('printBtn').addEventListener('click', ()=> window.print());
+
+document.getElementById('fileInput').addEventListener('change', function(e){
+  const file = e.target.files[0];
+  if(!file) return;
+  const status = document.getElementById('statusMsg');
+  status.textContent = 'Loading ' + file.name + '...';
+  const reader = new FileReader();
+  reader.onload = function(evt){
+    try{
+      const data = new Uint8Array(evt.target.result);
+      const workbook = XLSX.read(data, {type:'array'});
+      const firstSheet = workbook.Sheets[workbook.SheetNames[0]];
+      const rows = XLSX.utils.sheet_to_json(firstSheet, {defval:""});
+      render(rows);
+      document.getElementById('searchInput').value = '';
+      status.textContent = 'Loaded: ' + file.name;
+    }catch(err){
+      status.textContent = 'Error reading file — check format.';
+      console.error(err);
+    }
+  };
+  reader.readAsArrayBuffer(file);
+});
+
+/* Floating particles */
+(function(){
+  const container = document.getElementById('particles');
+  for(let i=0;i<18;i++){
+    const p = document.createElement('div');
+    p.className = 'particle';
+    p.style.left = Math.random()*100 + '%';
+    p.style.setProperty('--drift', (Math.random()*60-30)+'px');
+    p.style.animationDelay = (Math.random()*9) + 's';
+    p.style.animationDuration = (7+Math.random()*5) + 's';
+    container.appendChild(p);
+  }
+})();
+
+/* Mandala petals */
+(function(){
+  const g = document.getElementById('petals');
+  const n = 16;
+  let html = '';
+  for(let i=0;i<n;i++){
+    const angle = (360/n)*i;
+    html += `<line x1="100" y1="10" x2="100" y2="30" stroke="#EFD98C" stroke-width="0.6" transform="rotate(${angle} 100 100)"/>`;
+  }
+  g.innerHTML = html;
+})();
+</script>
+</body>
+</html>
