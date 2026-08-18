@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sri Gnana Peetam — Sacred Journey</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#140A0F;
+    --ink-2:#20101A;
+    --surface:#1D1017;
+    --edge:rgba(201,162,39,0.24);
+    --gold:#C9A227;
+    --gold-lt:#EFD98C;
+    --coral:#FF8A52;
+    --text:#F7EFE4;
+    --muted:#B39A86;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    background:
+      radial-gradient(ellipse at 12% -10%, rgba(201,162,39,0.13), transparent 55%),
+      radial-gradient(ellipse at 88% 110%, rgba(255,122,69,0.10), transparent 55%),
+      linear-gradient(170deg, var(--ink) 0%, var(--ink-2) 50%, var(--ink) 100%);
+    background-attachment:fixed;
+    color:var(--text);
+    font-family:'Poppins',system-ui,sans-serif;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  /* ---------------- HEADER ---------------- */
+  header{
+    padding:44px 40px 0;
+    display:flex;
+    flex-wrap:wrap;
+    gap:32px;
+    align-items:flex-end;
+    justify-content:space-between;
+  }
+  .om{font-size:1.4rem;color:var(--gold-lt);line-height:1;margin-bottom:10px;}
+  h1{
+    font-family:'Cormorant Garamond',Georgia,serif;
+    font-size:clamp(2.1rem,4.4vw,3.3rem);
+    font-weight:700;
+    line-height:1;
+    letter-spacing:1.5px;
+    color:#fff;
+  }
+  .kicker{
+    margin-top:11px;
+    font-size:0.72rem;
+    letter-spacing:4px;
+    text-transform:uppercase;
+    color:var(--gold-lt);
+  }
+  .stats{display:flex;gap:38px;}
+  .stat .n{
+    font-family:'Cormorant Garamond',Georgia,serif;
+    font-size:2.3rem;font-weight:700;line-height:1;
+    color:var(--coral);font-variant-numeric:tabular-nums;
+  }
+  .stat .l{
+    margin-top:4px;font-size:0.62rem;letter-spacing:2px;
+    text-transform:uppercase;color:var(--muted);
+  }
+
+  /* ---------------- RAIL ---------------- */
+  /* the rail sits in the upper third so the detail card always
+     has room to open beneath it, never over the title */
+  .rail-region{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-start;
+    padding:26px 0 10px;
+    position:relative;
+  }
+  .hint{
+    text-align:center;
+    font-size:0.68rem;
+    letter-spacing:2.4px;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin-bottom:26px;
+  }
+  .hint kbd{
+    font-family:inherit;
+    border:1px solid var(--edge);
+    border-radius:4px;
+    padding:1px 6px;
+    color:var(--gold-lt);
+  }
+
+  .rail{
+    overflow-x:auto;
+    overflow-y:hidden;
+    padding:34px 40px 26px;
+    scrollbar-width:thin;
+    scrollbar-color:var(--gold) transparent;
+  }
+  .rail::-webkit-scrollbar{height:6px;}
+  .rail::-webkit-scrollbar-track{background:rgba(255,255,255,0.05);border-radius:6px;}
+  .rail::-webkit-scrollbar-thumb{background:var(--gold);border-radius:6px;}
+
+  .track{
+    position:relative;
+    display:flex;
+    align-items:flex-start;
+    gap:0;
+    min-width:max-content;
+    padding:0 6px;
+  }
+  .track::before{
+    content:"";
+    position:absolute;
+    left:0;right:0;
+    top:33px;
+    height:2px;
+    background:linear-gradient(90deg,transparent,var(--gold) 3%,var(--gold) 97%,transparent);
+    box-shadow:0 0 14px rgba(201,162,39,0.45);
+  }
+
+  .stop{
+    position:relative;
+    flex:0 0 108px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    background:none;
+    border:none;
+    padding:0;
+    cursor:pointer;
+    font-family:inherit;
+    color:inherit;
+  }
+  .medallion{
+    width:66px;height:66px;
+    border-radius:50%;
+    background:var(--surface);
+    border:2px solid var(--gold);
+    display:grid;
+    place-items:center;
+    box-shadow:0 0 0 6px var(--ink-2), 0 6px 18px rgba(0,0,0,0.45);
+    transition:transform .22s ease, border-color .22s ease, box-shadow .22s ease;
+  }
+  .medallion svg{
+    width:27px;height:27px;
+    stroke:var(--gold-lt);
+    fill:none;
+    stroke-width:1.6;
+    stroke-linecap:round;
+    stroke-linejoin:round;
+    transition:stroke .22s ease;
+  }
+  .stop:hover .medallion,
+  .stop:focus-visible .medallion{
+    transform:translateY(-5px) scale(1.06);
+    border-color:var(--coral);
+    box-shadow:0 0 0 6px var(--ink-2), 0 0 22px rgba(255,138,82,0.45);
+  }
+  .stop:hover .medallion svg,
+  .stop:focus-visible .medallion svg{stroke:var(--coral);}
+  .stop:focus{outline:none;}
+  .stop:focus-visible .medallion{outline:2px solid var(--gold-lt);outline-offset:8px;}
+
+  .stop[aria-expanded="true"] .medallion{
+    transform:translateY(-5px) scale(1.06);
+    background:var(--coral);
+    border-color:var(--coral);
+    box-shadow:0 0 0 6px var(--ink-2), 0 0 26px rgba(255,138,82,0.6);
+  }
+  .stop[aria-expanded="true"] .medallion svg{stroke:#2A0D06;stroke-width:1.9;}
+
+  .yr{
+    margin-top:14px;
+    font-family:'Cormorant Garamond',Georgia,serif;
+    font-size:1.3rem;font-weight:700;line-height:1;
+    color:var(--gold-lt);
+    font-variant-numeric:tabular-nums;
+    transition:color .22s ease;
+  }
+  .mo{
+    margin-top:3px;
+    font-size:0.58rem;letter-spacing:1.7px;
+    text-transform:uppercase;color:var(--muted);
+  }
+  .stop:hover .yr,
+  .stop[aria-expanded="true"] .yr{color:var(--coral);}
+
+  /* title revealed on hover, above the rail */
+  .peek{
+    position:absolute;
+    bottom:calc(100% + 4px);
+    left:50%;
+    transform:translateX(-50%) translateY(4px);
+    width:150px;
+    font-family:'Cormorant Garamond',Georgia,serif;
+    font-size:0.86rem;
+    font-weight:600;
+    line-height:1.25;
+    color:var(--text);
+    text-align:center;
+    opacity:0;
+    pointer-events:none;
+    transition:opacity .2s ease, transform .2s ease;
+  }
+  .stop:hover .peek,
+  .stop:focus-visible .peek{opacity:1;transform:translateX(-50%) translateY(0);}
+  .stop[aria-expanded="true"] .peek{opacity:0;}
+
+  /* ---------------- POPOVER ---------------- */
+  .pop{
+    position:fixed;
+    z-index:60;
+    width:330px;
+    background:var(--surface);
+    border:1px solid var(--edge);
+    border-top:3px solid var(--coral);
+    border-radius:13px;
+    padding:20px 22px 22px;
+    max-height:calc(100vh - 110px);
+    overflow-y:auto;
+    box-shadow:0 22px 60px rgba(0,0,0,0.65);
+    opacity:0;
+    visibility:hidden;
+    transform:translateY(6px);
+    transition:opacity .2s ease, transform .2s ease, visibility .2s;
+  }
+  .pop.open{opacity:1;visibility:visible;transform:translateY(0);}
+  .pop .arrow{
+    position:absolute;
+    width:12px;height:12px;
+    background:var(--surface);
+    border-left:1px solid var(--edge);
+    border-top:1px solid var(--edge);
+    transform:rotate(45deg);
+  }
+  .pop.below .arrow{top:-7px;}
+  .pop.above .arrow{bottom:-7px;transform:rotate(225deg);}
+
+  .pop .cat{
+    font-size:0.6rem;letter-spacing:2px;text-transform:uppercase;
+    color:var(--gold);font-weight:500;
+  }
+  .pop .when{
+    display:flex;align-items:baseline;gap:8px;margin:7px 0 6px;
+  }
+  .pop .when .y{
+    font-family:'Cormorant Garamond',Georgia,serif;
+    font-size:2rem;font-weight:700;line-height:1;
+    color:var(--coral);font-variant-numeric:tabular-nums;
+  }
+  .pop .when .m{
+    font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);
+  }
+  .pop h2{
+    font-family:'Cormorant Garamond',Georgia,serif;
+    font-size:1.32rem;font-weight:600;line-height:1.24;
+    color:var(--text);text-wrap:balance;margin-bottom:9px;
+  }
+  .pop p{
+    font-size:0.83rem;font-weight:300;line-height:1.6;color:var(--muted);
+  }
+  .pop .close{
+    position:absolute;top:10px;right:12px;
+    background:none;border:none;cursor:pointer;
+    color:var(--muted);font-size:1.15rem;line-height:1;
+    padding:5px;border-radius:5px;
+  }
+  .pop .close:hover{color:var(--coral);}
+  .pop .close:focus-visible{outline:2px solid var(--gold-lt);outline-offset:1px;}
+  .pop .step{
+    margin-top:15px;padding-top:13px;
+    border-top:1px solid var(--edge);
+    display:flex;justify-content:space-between;align-items:center;
+    font-size:0.63rem;letter-spacing:1.7px;text-transform:uppercase;
+    color:var(--muted);
+  }
+  .pop .step button{
+    background:none;border:1px solid var(--edge);
+    color:var(--gold-lt);font-family:inherit;
+    font-size:0.63rem;letter-spacing:1.7px;text-transform:uppercase;
+    padding:5px 12px;border-radius:20px;cursor:pointer;
+    transition:border-color .18s ease,color .18s ease;
+  }
+  .pop .step button:hover:not(:disabled){border-color:var(--coral);color:var(--coral);}
+  .pop .step button:disabled{opacity:0.3;cursor:default;}
+  .pop .step button:focus-visible{outline:2px solid var(--gold-lt);outline-offset:2px;}
+  .pop .count{font-variant-numeric:tabular-nums;}
+
+  footer{
+    padding:18px 40px 26px;
+    display:flex;justify-content:space-between;align-items:center;
+    flex-wrap:wrap;gap:12px;
+    font-size:0.64rem;letter-spacing:1.6px;text-transform:uppercase;
+    color:var(--muted);
+    border-top:1px solid var(--edge);
+    margin:0 40px;
+  }
+  footer .mark{color:var(--gold-lt);}
+
+  @media (max-width:760px){
+    header{padding:30px 22px 0;gap:20px;}
+    .stats{gap:24px;}
+    .stat .n{font-size:1.7rem;}
+    .rail{padding:34px 22px 22px;}
+    .pop{width:min(330px,calc(100vw - 32px));}
+    footer{margin:0 22px;padding:16px 0 22px;}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{transition:none !important;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div>
+    <div class="om">ॐ</div>
+    <h1>Our Sacred Journey</h1>
+    <div class="kicker">Milestones of Sri Gnana Peetam &nbsp;·&nbsp; 2006 – 2026</div>
+  </div>
+  <div class="stats">
+    <div class="stat"><div class="n">2008</div><div class="l">Founded</div></div>
+    <div class="stat"><div class="n">18</div><div class="l">Years of Service</div></div>
+    <div class="stat"><div class="n">21</div><div class="l">Milestones</div></div>
+  </div>
+</header>
+
+<div class="rail-region">
+  <p class="hint">Select a milestone to read its story &nbsp;·&nbsp; <kbd>←</kbd> <kbd>→</kbd> to travel the years</p>
+  <div class="rail" id="rail">
+    <div class="track" id="track"></div>
+  </div>
+</div>
+
+<div class="pop" id="pop" role="dialog" aria-modal="false" aria-labelledby="popTitle">
+  <span class="arrow" id="popArrow"></span>
+  <button class="close" id="popClose" aria-label="Close">✕</button>
+  <span class="cat" id="popCat"></span>
+  <div class="when"><span class="y" id="popYear"></span><span class="m" id="popMonth"></span></div>
+  <h2 id="popTitle"></h2>
+  <p id="popText"></p>
+  <div class="step">
+    <button id="popPrev" type="button">← Prev</button>
+    <span class="count" id="popCount"></span>
+    <button id="popNext" type="button">Next →</button>
+  </div>
+</div>
+
+<footer>
+  <span>Sri Gnana Peetam &nbsp;·&nbsp; A Sacred Mission of Service</span>
+  <span class="mark">ॐ</span>
+  <span>Anantapur &nbsp;·&nbsp; Est. 18 August 2008</span>
+</footer>
+
+<script>
+/* ============ ICONS (one per stream of seva) ============ */
+const ICONS = {
+  guru:      '<svg viewBox="0 0 24 24"><path d="M12 3l1.9 4.6L19 8.4l-3.6 3.4.9 5-4.3-2.5L7.7 16.8l.9-5L5 8.4l5.1-.8z"/></svg>',
+  foundation:'<svg viewBox="0 0 24 24"><path d="M4 20h16M6 20V10m4 10V10m4 10V10m4 10V10M3 10h18L12 4z"/></svg>',
+  vidya:     '<svg viewBox="0 0 24 24"><path d="M12 7v13M12 7C10.5 5.5 8.4 5 5 5v13c3.4 0 5.5.5 7 2 1.5-1.5 3.6-2 7-2V5c-3.4 0-5.5.5-7 2z"/></svg>',
+  ritual:    '<svg viewBox="0 0 24 24"><path d="M12 3c-1 3-3.5 4.2-3.5 7a3.5 3.5 0 0 0 7 0c0-2.8-2.5-4-3.5-7z"/><path d="M5 17h14l-2.5 4h-9z"/></svg>',
+  gauseva:   '<svg viewBox="0 0 24 24"><path d="M4 8c0-2 1.2-3 3-3l1.5 2h7L17 5c1.8 0 3 1 3 3 0 5-3.2 9-8 9S4 13 4 8z"/><path d="M9.5 10.5h.01M14.5 10.5h.01"/></svg>',
+  seva:      '<svg viewBox="0 0 24 24"><path d="M3 13h18a9 9 0 0 1-18 0z"/><path d="M2 21h20"/><path d="M12 4c1 1 1 2.2 0 3.4"/><path d="M8.6 5.4c.7.7.7 1.6 0 2.3"/></svg>',
+  pilgrimage:'<svg viewBox="0 0 24 24"><path d="M2 20h20L15 7l-3.2 5.6L9.4 9z"/><circle cx="17.5" cy="4.5" r="1.8"/></svg>',
+  cultural:  '<svg viewBox="0 0 24 24"><path d="M9 18V5l11-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/></svg>',
+  honour:    '<svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="5"/><path d="M8.4 12.6L7 21l5-2.8L17 21l-1.4-8.4"/></svg>',
+  digital:   '<svg viewBox="0 0 24 24"><path d="M11 2l1.9 5.1L18 9l-5.1 1.9L11 16l-1.9-5.1L4 9l5.1-1.9z"/><path d="M18.5 15l.9 2.4 2.4.9-2.4.9-.9 2.4-.9-2.4-2.4-.9 2.4-.9z"/></svg>'
+};
+const LABELS = {
+  guru:"Guru's Grace", foundation:"Foundation", vidya:"Vidya", ritual:"Sacred Rituals",
+  gauseva:"Gau Seva", seva:"Community Seva", pilgrimage:"Pilgrimage",
+  cultural:"Cultural", honour:"Recognition", digital:"Digital"
+};
+
+/* ============ MILESTONES (mirrors SGP_Milestones.xlsx) ============ */
+const EVENTS = [
+  {y:2006,m:"Aug",c:"guru",       t:"Guidance from Kanchi Jagadguru",            d:"Guruji received blessings in Kancheepuram to establish the foundation."},
+  {y:2008,m:"Aug",c:"foundation", t:"SCSGP Foundation Day",                      d:"Official founding on 18 August 2008."},
+  {y:2012,m:"Aug",c:"vidya",      t:"Nithya Smarana & Puja Vidhanam",            d:"The first books released by the Trust."},
+  {y:2013,m:"Mar",c:"ritual",     t:"Asthadasha Laksha Kumkumarchana",           d:"Over 400 devotees participated in Produttur."},
+  {y:2013,m:"Jun",c:"gauseva",    t:"Annual Contributions to Gou Shala",         d:"Support extended to Somuladoddi Gaushala."},
+  {y:2013,m:"Jun",c:"vidya",      t:"Pravachanam by Sri Garikapati garu",        d:"The first discourse in Anantapur."},
+  {y:2014,m:"Dec",c:"ritual",     t:"Commencement of Annual Yagams",             d:"Initiated with Srividhya Mahayagam; now a yearly tradition attended by hundreds."},
+  {y:2018,m:"Jun",c:"vidya",      t:"Educational Support & Book Distribution",   d:"Over 3,000 students benefitted."},
+  {y:2018,m:"Aug",c:"pilgrimage", t:"Paduka Yatra of Paramacharya Swami",        d:"The first Paduka Yatra in Anantapur by SGP."},
+  {y:2018,m:"Aug",c:"cultural",   t:"10th Anniversary Celebrations",             d:"Artists from diverse art forms were felicitated."},
+  {y:2019,m:"Jul",c:"seva",       t:"Pandemic Relief Initiatives",               d:"Extensive seva activities supporting all communities."},
+  {y:2019,m:"Oct",c:"ritual",     t:"Sharan Navaratri Celebrations",             d:"Ten days of Chandi Parayana, homas, Chakrarchana, annadaanam, and utsavams."},
+  {y:2019,m:"Dec",c:"ritual",     t:"Sri Lalitha Yagam – Suvasini Puja",         d:"Conducted Ashtottara Shata (108) Suvasini Puja."},
+  {y:2022,m:"Mar",c:"guru",       t:"Visit of Kanchi Swami",                     d:"Sri Shankara Vijayendra Saraswathi Swami's Vijaya Yatra to Guruji's residence."},
+  {y:2022,m:"Oct",c:"seva",       t:"Monthly Narayana Seva Initiated",           d:"Bi-monthly annadaanam and seva during trust programs."},
+  {y:2024,m:"Jul",c:"honour",     t:"Puraskaram to Scholars",                    d:"Felicitation of Sri Samavedam garu and Sri Goteti Srinivasa Rao garu; books launched — Saparya Kadambam, Anthardhara, Tyagaraja Sourabham."},
+  {y:2025,m:"Feb",c:"pilgrimage", t:"Mahakumbh Camp – Prayagraj",                d:"Participation in the once-in-144-years event with Gurujis, under Karpatri Swamis' parampara."},
+  {y:2025,m:"Dec",c:"digital",    t:"Launch of Shakti Sankhya App",              d:"Guru-led energy tracking: the next generation of mantra japam and discipline tracking, built to empower both practitioners and gurus by blending ancient wisdom with modern design."},
+  {y:2026,m:"Jan",c:"honour",     t:"Founder Puraskaram",                        d:"Awarded Dharmika Karya Nirvahana Jeevana by Anantha Bramhana Seva Samstha and Akhila Bharatiya Bramhana Maha Sangham."},
+  {y:2026,m:"Jun",c:"digital",    t:"Rebranding & Website Launch",               d:"New logo and redesigned website unveiled."},
+  {y:2026,m:"Jul",c:"cultural",   t:"Vaggeyakara Vaibhavam",                     d:"Concert by Sri Nihal garu & team with rare kritis of the Trinity of Music, Annamaya and Kshetrayya."}
+];
+
+/* ============ BUILD THE RAIL ============ */
+const track = document.getElementById('track');
+EVENTS.forEach((ev, i) => {
+  const b = document.createElement('button');
+  b.type = 'button';
+  b.className = 'stop';
+  b.dataset.i = i;
+  b.setAttribute('aria-expanded', 'false');
+  b.setAttribute('aria-label', `${ev.m} ${ev.y} — ${ev.t}`);
+  b.innerHTML =
+    `<span class="peek">${ev.t}</span>` +
+    `<span class="medallion">${ICONS[ev.c]}</span>` +
+    `<span class="yr">${ev.y}</span>` +
+    `<span class="mo">${ev.m}</span>`;
+  track.appendChild(b);
+});
+
+/* ============ POPOVER ============ */
+const rail  = document.getElementById('rail');
+const pop   = document.getElementById('pop');
+const arrow = document.getElementById('popArrow');
+const stops = [...track.querySelectorAll('.stop')];
+let current = -1;
+
+function place(){
+  if(current < 0) return;
+  const stop = stops[current];
+  const r = stop.getBoundingClientRect();
+
+  // hide the popover if its stop has scrolled out of the rail
+  const railBox = rail.getBoundingClientRect();
+  if(r.right < railBox.left || r.left > railBox.right){ close(); return; }
+
+  const w = pop.offsetWidth, h = pop.offsetHeight, gap = 18, margin = 16;
+  const room = window.innerHeight - r.bottom;
+  const below = room > h + gap || r.top < h + gap;
+
+  const top = below ? r.bottom + gap : r.top - h - gap;
+  let left = r.left + r.width / 2 - w / 2;
+  left = Math.max(margin, Math.min(left, window.innerWidth - w - margin));
+
+  pop.style.top = top + 'px';
+  pop.style.left = left + 'px';
+  pop.classList.toggle('below', below);
+  pop.classList.toggle('above', !below);
+
+  const ax = r.left + r.width / 2 - left;
+  arrow.style.left = Math.max(14, Math.min(ax - 6, w - 26)) + 'px';
+}
+
+function open(i){
+  const ev = EVENTS[i];
+  if(!ev) return;
+  if(current >= 0) stops[current].setAttribute('aria-expanded','false');
+  current = i;
+  stops[i].setAttribute('aria-expanded','true');
+
+  document.getElementById('popCat').textContent   = LABELS[ev.c];
+  document.getElementById('popYear').textContent  = ev.y;
+  document.getElementById('popMonth').textContent = ev.m;
+  document.getElementById('popTitle').textContent = ev.t;
+  document.getElementById('popText').textContent  = ev.d;
+  document.getElementById('popCount').textContent = `${i + 1} of ${EVENTS.length}`;
+  document.getElementById('popPrev').disabled = i === 0;
+  document.getElementById('popNext').disabled = i === EVENTS.length - 1;
+
+  stops[i].scrollIntoView({behavior:'smooth', block:'nearest', inline:'center'});
+  pop.classList.add('open');
+  requestAnimationFrame(place);
+}
+
+function close(){
+  if(current >= 0) stops[current].setAttribute('aria-expanded','false');
+  current = -1;
+  pop.classList.remove('open');
+}
+
+function move(delta){
+  const next = current < 0 ? 0 : current + delta;
+  if(next >= 0 && next < EVENTS.length) open(next);
+}
+
+stops.forEach(s => s.addEventListener('click', e => {
+  e.stopPropagation();
+  const i = +s.dataset.i;
+  i === current ? close() : open(i);
+}));
+
+document.getElementById('popClose').addEventListener('click', () => { close(); });
+document.getElementById('popPrev').addEventListener('click', e => { e.stopPropagation(); move(-1); });
+document.getElementById('popNext').addEventListener('click', e => { e.stopPropagation(); move(1); });
+pop.addEventListener('click', e => e.stopPropagation());
+
+document.addEventListener('click', () => { if(current >= 0) close(); });
+document.addEventListener('keydown', e => {
+  if(e.key === 'Escape') close();
+  if(e.key === 'ArrowRight'){ e.preventDefault(); move(1); }
+  if(e.key === 'ArrowLeft'){  e.preventDefault(); move(-1); }
+});
+
+// keep the popover pinned to its medallion
+rail.addEventListener('scroll', place, {passive:true});
+window.addEventListener('scroll', place, {passive:true});
+window.addEventListener('resize', place);
+
+// drag the rail sideways
+let dragging = false, startX = 0, startScroll = 0, moved = 0;
+rail.addEventListener('pointerdown', e => {
+  if(e.target.closest('.stop')) return;
+  dragging = true; moved = 0;
+  startX = e.clientX; startScroll = rail.scrollLeft;
+  rail.setPointerCapture(e.pointerId);
+  rail.style.cursor = 'grabbing';
+});
+rail.addEventListener('pointermove', e => {
+  if(!dragging) return;
+  const dx = e.clientX - startX;
+  moved = Math.abs(dx);
+  rail.scrollLeft = startScroll - dx;
+});
+['pointerup','pointercancel'].forEach(t => rail.addEventListener(t, () => {
+  dragging = false; rail.style.cursor = '';
+}));
+</script>
+</body>
+</html>
